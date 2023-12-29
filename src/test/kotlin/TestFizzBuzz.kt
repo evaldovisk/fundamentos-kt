@@ -2,26 +2,35 @@
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-
 private fun fizzBuzz(n: Int): List<String> {
     val listItens = ArrayList<String>()
-    for(number in 1..n){
-        if(number % 5 == 0 && number % 3 == 0){
-            listItens.add("FizzBuzz")
-            continue
-        }
-        if(number % 5 == 0){
-            listItens.add("Buzz")
-            continue
-        }
-        if(number % 3 == 0){
-            listItens.add("Fizz")
-            continue
-        }
+    (1..n).forEach {
+        val item = when {
+            it % 5 == 0 && it % 3 == 0 -> "FizzBuzz"
+            it % 3 == 0 -> "Fizz"
+            it % 5 == 0 -> "Buzz"
 
-        listItens.add(number.toString())
+            else -> it.toString()
+        }
+        listItens.add(item)
     }
 
+    return listItens
+
+}
+
+private fun fizzBuzz1(n: Int): List<String> {
+    val listItens = ArrayList<String>()
+    for(number in 1..n){
+        val item = when{
+            number % 5 == 0 && number % 3 == 0 -> "FizzBuzz"
+            number % 3 == 0 -> "Fizz"
+            number % 5 == 0 -> "Buzz"
+
+            else -> number.toString()
+        }
+        listItens.add(item)
+    }
     return listItens
 }
 
